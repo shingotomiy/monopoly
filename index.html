@@ -23,14 +23,16 @@
 </style>
 </head>
 <body>
-<p style="display:inline-block; width:25%;">
+<p style="display:inline-block;width:25%; ">My name is ..
+</p>
+<p style="display:inline-block; width:20%;">
 <input type="radio" value="Taro" name="radiogroup2" />Taro
 </p>
 
-<p style="display:inline-block;width:25%; ">
+<p style="display:inline-block;width:20%; ">
 <input type="radio" value="Shiho" name="radiogroup2" />Shiho
 </p>
-<p style="display:inline-block; width:25%;">
+<p style="display:inline-block; width:20%;">
 <input type="radio" value="Shingo" name="radiogroup2" />Shingo
 </p>
 
@@ -40,6 +42,8 @@
 </div>
   <div><span id="10Kvalue" class="monopoly">0K</span><input type="range" min="0" max="9" value="0" class="slider" id="10KRange"></div>
 </div>
+<p style="display:inline-block;width:25%; ">I am ..
+</p>
 <p style="display:inline-block; width:25%;">
 <input type="radio" value="Paying" name="radiogroup3" />paying
 </p>
@@ -48,21 +52,27 @@
 <input type="radio" value="Getting" name="radiogroup3" />getting
 </p>
 <div>
-<p style="display:inline-block;width:25%; ">
-<input type="checkbox" id="ToTaro" name="ToTaro" value="Bike">
-  <label for="vehicle1">Taro</label>
+<p style="display:inline-block;width:25%; ">(Paying to)
 </p>
-<p style="display:inline-block;width:25%; ">
-<input type="checkbox" id="ToShiho" name="ToShiho" value="Car">
-  <label for="vehicle2">Shiho</label>
+<p style="display:inline-block;width:20%; ">
+<input type="checkbox" id="ToTaro" name="ToTaro" value="Taro">
+  <label for="ToTaro">Taro</label>
 </p>
-<p style="display:inline-block;width:25%; ">
+<p style="display:inline-block;width:20%; ">
+<input type="checkbox" id="ToShiho" name="ToShiho" value="Shiho">
+  <label for="ToShiho">Shiho</label>
+</p>
+<p style="display:inline-block;width:20%; ">
 
-<input type="checkbox" id="ToShingo" name="ToShingo" value="Boat">
-  <label for="vehicle3">Shingo</label>
+<input type="checkbox" id="ToShingo" name="ToShingo" value="Shingo">
+  <label for="ToShingo">Shingo</label>
 </p>
 </div>
-<button id="myBtn">Try it</button>
+<p style="display:inline-block;width:100%; ">
+
+<input type="checkbox" id="Go" name="Go" value="Go">
+  <label for="Go">Reached Go to collect 2M</label>
+</p>
 <script>
 document.getElementById("MRange").oninput = function() {
   document.getElementById("Mvalue").innerHTML = this.value+"M";
@@ -73,12 +83,6 @@ document.getElementById("100KRange").oninput = function() {
 document.getElementById("10KRange").oninput = function() {
   document.getElementById("10Kvalue").innerHTML = this.value+"0K";
 }
-
-document.getElementById("myBtn").addEventListener("click", function(){
-  alert(0);
-  location.reload();
-
-});
 
 </script>
 
