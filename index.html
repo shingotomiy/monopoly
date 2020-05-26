@@ -73,6 +73,8 @@
 <input type="checkbox" id="Go" name="Go" value="Go">
   <label for="Go">Reached Go to collect 2M</label>
 </p>
+  <button id="myBtn">Try it</button>
+
 <script>
 document.getElementById("MRange").oninput = function() {
   document.getElementById("Mvalue").innerHTML = this.value+"M";
@@ -83,6 +85,11 @@ document.getElementById("100KRange").oninput = function() {
 document.getElementById("10KRange").oninput = function() {
   document.getElementById("10Kvalue").innerHTML = this.value+"0K";
 }
+document.getElementById("myBtn").addEventListener("click", function(){
+  alert(0);
+  location.reload();
+
+});
 
 </script>
 
