@@ -9,7 +9,7 @@
 
 .slider {
   width: 90%;
-  border-radius: 5px;
+  border-radius: 15px;
   outline: none;
   opacity: 0.7;
 }
@@ -26,30 +26,30 @@
 <p style="display:inline-block;width:25%; ">My name is ..
 </p>
 <p style="display:inline-block; width:20%;">
-<input type="radio" value="Taro" name="radiogroup2" />Taro
+<input type="radio" value="Taro" name="radiogroup2" class="transactionOwner"/>Taro
 </p>
 
 <p style="display:inline-block;width:20%; ">
-<input type="radio" value="Shiho" name="radiogroup2" />Shiho
+<input type="radio" value="Shiho" name="radiogroup2" class="transactionOwner"/>Shiho
 </p>
 <p style="display:inline-block; width:20%;">
-<input type="radio" value="Shingo" name="radiogroup2" />Shingo
+<input type="radio" value="Shingo" name="radiogroup2" class="transactionOwner"/>Shingo
 </p>
 
 <div class="slidecontainer">
-  <div><span id="Mvalue" class="monopoly">M</span><input type="range" min="0" max="9" value="0" class="slider" id="MRange"></div>
-  <div><span id="100Kvalue" class="monopoly">00K</span><input type="range" min="0" max="9" value="0" class="slider" id="100KRange"></div>
+  <div><input type="range" min="0" max="9" value="0" class="slider" id="MRange"><span id="Mvalue" class="monopoly">M</span></div>
+  <div><input type="range" min="0" max="9" value="0" class="slider" id="100KRange"><span id="100Kvalue" class="monopoly">00K</span></div>
 </div>
-  <div><span id="10Kvalue" class="monopoly">0K</span><input type="range" min="0" max="9" value="0" class="slider" id="10KRange"></div>
+  <div><input type="range" min="0" max="9" value="0" class="slider" id="10KRange"><span id="10Kvalue" class="monopoly">0K</span></div>
 </div>
-<p style="display:inline-block;width:25%; ">I am ..
+<p style="display:inline-block;width:25%; ">I am .. this.
 </p>
 <p style="display:inline-block; width:25%;">
-<input type="radio" value="Paying" name="radiogroup3" />paying
+<input type="radio" value="Paying" name="radiogroup3" class="transactionType"/>paying
 </p>
 
 <p style="display:inline-block;width:25%; ">
-<input type="radio" value="Getting" name="radiogroup3" />getting
+<input type="radio" value="Getting" name="radiogroup3"  class="transactionType"/>getting
 </p>
 <div>
 <p style="display:inline-block;width:25%; ">(Paying to)
@@ -71,9 +71,9 @@
 <p style="display:inline-block;width:100%; ">
 
 <input type="checkbox" id="Go" name="Go" value="Go">
-  <label for="Go">Reached Go to collect 2M</label>
+<label for="Go">Reached Go to collect 2M</label>
 </p>
-  <button id="myBtn">Try it</button>
+ <button id="myBtn">Submit</button>
 
 <script>
 document.getElementById("MRange").oninput = function() {
@@ -86,14 +86,73 @@ document.getElementById("10KRange").oninput = function() {
   document.getElementById("10Kvalue").innerHTML = this.value+"0K";
 }
 document.getElementById("myBtn").addEventListener("click", function(){
-  var audio = new Audio('coin.mp3');
-audio.play();
 
-  location.reload();
+    var transactionOwner = "";
+    var M = "";
+    var hundredK = "";
+    var tenK = "";
+    var transactionType = "";
+    var payee = "";
+    var go = "";
+
+    var transactionOwners = document.getElementsByClassName("transactionOwner");
+    for(var i = 0;i<transactionOwners.length;i++){
+        if(transactionOwners[i].checked){
+            transactionOwner = transactionOwners[i].value;
+            console.log(transactionOwners[i].value);
+        }
+    }
+    M = document.getElementById("MRange").value;
+    hundredK = document.getElementById("100KRange").value;
+    tenK = document.getElementById("10KRange").value;
+
+    var transactionTypes = document.getElementsByClassName("transactionType");
+    for(var j = 0;j<transactionTypes.length;j++){
+        if(transactionTypes[j].checked){
+         transactionType = transactionTypes[j].value;   
+        }
+    }
+
+
+
+
+    
+    play(yodelBuffer);
+
+
+
+
+  //location.reload();
 
 });
 
+const URL = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/Yodel_Sound_Effect.mp3';
+      
+      const context = new AudioContext();
+        
+      let yodelBuffer;
+    
+      window.fetch(URL)
+        .then(response => response.arrayBuffer())
+        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+        .then(audioBuffer => {
+          yodelBuffer = audioBuffer;
+        });
+        
+    
+      function play(audioBuffer) {
+        const source = context.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(context.destination);
+        source.start();
+      }
+   
 </script>
 
 </body>
 </html>
+
+
+
+  
+  
